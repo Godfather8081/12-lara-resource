@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\testController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,14 +30,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // for that we ensure that in any response we sent this things
 
 // - every response always return 200 response as main response type weather it's success or any other type of err
-// so we create global interseptor which will reject promise which is giving anything else as main status then 200
+// so we create global interceptors which will reject promise which is giving anything else as main status then 200
 // - code = we will manage our own status in response so we can use it in then block in response
 // we will give 200 or 201 for success for validation err 400, and for unauthorize 401
 // - status = in this we define success for all success responses and error for all error responses
-// - message = we give success message if there is success and error messages or validation messages for error
+// - message = we give success message if there is success and error messages basically 
+// in this send something that frontend developer can show as tost to users
+// - errors = we send actual errors that occur in operations and this key will be only available
+// when we send error response not in success and we can send validation errors, try catch exceptions errors etc in it
 // - data = we give all data which user expect from api in data key and if there is error then data will be []
 // - toast = we give toast as true or false base in the value in front-end we can know that in response of api call 
 // should we show message or not to user
+
 
 
 // in all projects we create this three files for handling response
@@ -56,3 +61,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // access to current req and res and there we modify main response status to 200 so
 // if we use generalError class for validation and auth related errors then we can also maintain our 
 // general response structure 
+
+
+
+Route::get('default-success', [testController::class, 'defaultSuccess']);
+Route::get('success-res', [testController::class, 'successRes']);
+Route::get('default-err', [testController::class, 'defaultErr']);
+Route::post('user-validation-err', [testController::class, 'validationErr']);

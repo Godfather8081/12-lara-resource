@@ -13,7 +13,7 @@ class ResponseWrapper extends JsonResource
      * @return array
      */
 
-    //  we are using jsonResponse class which is laravel class which will convert our response to json
+    // we are using jsonResponse class which is laravel class which will convert our response to json
     // with method will use to merge existing response with returned data hear
     // we are checking for key data is passed or not and if not then we are setting default
     // now whenever we extend this class we will get with method so we don't have to repeat it every place
@@ -21,10 +21,10 @@ class ResponseWrapper extends JsonResource
     public function with($request)
     {
         return [
-            'status' => $this['status'] ? $this['status'] : 'success',
-            'code' => $this['code'] ? $this['code'] : 200,
-            'message' => $this['message'] ? $this['message'] : '',
-            'toast' => $this['toast'] ? $this['toast'] : false
+            'status' => isset($this['status']) ? $this['status'] : 'success',
+            'code' => isset($this['code']) ? $this['code'] : 200,
+            'message' => isset($this['message']) ? $this['message'] : '',
+            'toast' => isset($this['toast']) ? $this['toast'] : false
         ];
     }
 }

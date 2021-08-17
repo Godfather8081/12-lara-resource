@@ -19,11 +19,12 @@ class GeneralError extends JsonResource
     public function toArray($request)
     {
         return [
-            'status' => $this['status'] ? $this['status'] : 'error',
-            'code' => $this['code'] ? $this['code'] : 400,
-            'message' => $this['message'] ? $this['message'] : '',
-            'data' => $this['data'] ? $this['data'] : [],
-            'toast' => $this['toast'] ? $this['toast'] : false
+            'status' => isset($this['status'])  ? $this['status'] : 'error',
+            'code' => isset($this['code'])  ? $this['code'] : 400,
+            'message' => isset($this['message'])  ? $this['message'] : '',
+            'data' =>  isset($this['data'])  ? $this['data'] : [],
+            'toast' => isset($this['toast'])  ? $this['toast'] : false,
+            'errors' => isset($this['errors']) ? $this['errors'] : []
         ];
     }
 

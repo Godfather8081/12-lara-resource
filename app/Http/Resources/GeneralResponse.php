@@ -18,6 +18,6 @@ class GeneralResponse extends ResponseWrapper
 
     public function toArray($request)
     {
-        return $this['data'] ? $this['data'] : [];
+        return isset($this['data']) ? $this['data'] : [];
     }
 }
