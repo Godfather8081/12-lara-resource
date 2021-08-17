@@ -61,7 +61,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // access to current req and res and there we modify main response status to 200 so
 // if we use generalError class for validation and auth related errors then we can also maintain our 
 // general response structure 
-
+// 
 
 
 Route::get('default-success', [testController::class, 'defaultSuccess']);
